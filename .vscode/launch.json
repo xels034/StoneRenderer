@@ -1,0 +1,16 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Stone_Render",
+      "request": "launch",
+      "mainClass": "glGraphics.AppWindow",
+      "projectName": "Stone_Render",
+      "vmArgs": "-Djava.library.path=lib/natives -server -Xmx4G -XX:+UseTLAB -XX:+UseBiasedLocking -XX:+UseConcMarkSweepGC -XX:+OptimizeStringConcat -XX:ErrorFile=log/jvm_crash_log_%p.log -Djava.awt.headless=true"
+    }
+  ]
+}

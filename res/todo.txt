@@ -1,0 +1,36 @@
+Wrappers to render to msaa to normal texture
+shader per object
+CUBEMAPS:
+Setting the Images for a Cube Map Texture
+Here is how to load the six faces of a non-mipmapped cube map texture:
+
+    GLubyte face[6][64][64][3];
+
+    for (i=0; i<6; i++) {
+      glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X_EXT + i,
+        0,                  //level
+        GL_RGB8,            //internal format
+        64,                 //width
+        64,                 //height
+        0,                  //border
+        GL_RGB,             //format
+        GL_UNSIGNED_BYTE,   //type
+        &face[i][0][0][0]); // pixel data
+    }
+
+Each face in the example above is a 64x64 RGB image.
+
+Establishing mipmaps is not any more difficult.  You can use the gluBuild2DMipmaps routine for establishing mipmap textures for cube map faces just like 2D textures.  Instead of passing GL_TEXTURE_2D for the target parameter, pass in one of the "texture image" cube map targets.  Example:
+
+    gluBuild2DMipmaps(GL_TEXTURE_CUBE_MAP_NEGATIVE_X_EXT,
+      GL_RGB8, 64, 64, GL_RGB, GL_UNSIGNED_BYTE, &face[1][0][0][0]);
+
+Enabling and Disabling Cube Map Textures
+Enabling and disabling the cube map texture is done as follows:
+
+    glEnable(GL_TEXTURE_CUBE_MAP_EXT);
+    glDisable(GL_TEXTURE_CUBE_MAP_EXT);
+
+As stated earlier remember that for a cube map texture to be consistent, all the faces of all required levels must be square and have the same dimensions (in addition to the standard OpenGL texture consistency rules).  If the texture is not consistent, OpenGL is required to act as if the inconsistent texture unit is disabled.
+
+OpenGL has a priority scheme when multiple texture targets are enabled at the same time.  Cube map texturing occurs when cube map texturing is enabled even if 3D, 2D, or 1D texturing is also enabled.  The texturing enable priority is cube map, 3D, 2D, and finally 1D. 
