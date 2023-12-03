@@ -6,10 +6,10 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Stone_Render",
+      "name": "StoneRenderer",
       "request": "launch",
       "mainClass": "glGraphics.AppWindow",
-      "projectName": "Stone_Render",
+      "projectName": "StoneRenderer",
       "vmArgs": "-Djava.library.path=lib/natives -server -Xmx4G -XX:+UseTLAB -XX:+UseBiasedLocking -XX:+OptimizeStringConcat -XX:ErrorFile=log/jvm_crash_log_%p.log -Djava.awt.headless=true"
     }
   ]
